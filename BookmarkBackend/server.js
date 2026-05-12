@@ -1,4 +1,3 @@
-// BookmarkBackend/server.js
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -16,8 +15,13 @@ connectDB();
 
 app.use(cors({
   origin: '*'
-}))
+}));
+
 app.use(express.json({ limit: '10mb' }));
+
+app.get("/", (req, res) => {
+  res.send("Backend Running");
+});
 
 app.use('/api/users', userRoutes);
 app.use('/api/bookmarks', bookmarkRoutes);
@@ -26,6 +30,7 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
