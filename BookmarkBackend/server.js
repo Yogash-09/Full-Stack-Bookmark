@@ -14,10 +14,8 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://full-stack-bookmark-fdq7.vercel.app"
-  ],
+  origin: "https://full-stack-bookmark-19q0xptqa-yogash-s-projects.vercel.app",
+   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
 
@@ -34,6 +32,7 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
 const PORT = process.env.PORT || 5000;
+app.options("*", cors());
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
