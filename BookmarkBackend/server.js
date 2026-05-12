@@ -14,7 +14,9 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}))
 app.use(express.json({ limit: '10mb' }));
 
 app.use('/api/users', userRoutes);
